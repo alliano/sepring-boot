@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <title>spring framework app</title>
+    <title th:text="${title}"></title>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
@@ -24,16 +24,34 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
             </ul>
           </div>
         </div>
       </nav>
+  <table class="table bg-dark mt-4 ">
+    <thead>
+      <tr style="color: white;">
+        <td>id</td>
+        <td>name</td>
+        <td>code</td>
+        <td>pricre</td>
+      </tr>
+    </thead>
+    <tbody>
 
-    <h1>hello spring framework app</h1>
-    <h3 th:text="${message}"></h3>
+      <!-- <h1 th:text="${datas[0].id}"></h1> -->
+      <td th:each="data : ${datas}">
+        <tr th:text="${data.id}"></tr>
+        <tr th:text="${data.name}"></tr>
+        <tr th:text="${data.code}"></tr>
+        <tr th:text="${data.price}"></tr>
+      </td>
+    </tbody>
+
+  </table>
+   
+
+  
 </body>
 <script src="/webjars/bootsrap/js/bootstrap.min.js"></script>
 </html>
