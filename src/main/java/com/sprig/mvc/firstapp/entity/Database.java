@@ -12,6 +12,7 @@ public class Database {
         this.name = name;
         this.price = price;
     }
+    public Database() {}
 
     public Long setId(Long id) {
         return this.id = id;
