@@ -38,14 +38,15 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <h1 th:text="${datas[0].id}"></h1> -->
-      <td th:each="data : ${datas}">
-        <tr th:text="${data.id}"></tr>
-        <tr th:text="${data.name}"></tr>
-        <tr th:text="${data.code}"></tr>
-        <tr th:text="${data.price}"></tr>
-      </td>
+
+     <tr th:each=" data : ${datas}" style="color: white;">
+       <td th:text="${data.id}"></td>
+       <td th:text="${data.name}"></td>
+       <td th:text="${data.code}"></td>
+       <td th:text="${data.price}"></td>
+     </tr>
     </tbody>
+
 
   </table>
    
