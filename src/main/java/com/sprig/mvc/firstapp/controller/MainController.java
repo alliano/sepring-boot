@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("")
 public class MainController {
@@ -39,4 +40,12 @@ public class MainController {
         databaseService.save(database);
         return "redirect:/";
     }
+
+    @GetMapping(value="/profile")
+    public String profile(Model model) {
+        String title = "Profile";
+        model.addAttribute("title",title);
+        return "profile";
+    }
+    
 }
