@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 @Controller
@@ -47,5 +49,28 @@ public class MainController {
         model.addAttribute("title",title);
         return "profile";
     }
+
+    @GetMapping(value = "/delete/{id}")
+    private String delete(@PathVariable("id") long id){
+        // System.out.println(id);
+        databaseService.deleteById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    private String editData(@PathVariable("id") long id ,Model model){
+        String title = "edit";
+        model.addAttribute("title", title);
+        model.addAttribute("datas", databaseService.findById(id));
+        return "edit";
+    }
+
+    @PostMapping(value="/update")
+    public String update(Database database, Model model) {
+        System.out.println(database);
+
+        return "redirect:/";
+    }
+    
     
 }

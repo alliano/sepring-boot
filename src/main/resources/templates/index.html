@@ -21,9 +21,6 @@
             <li class="nav-item">
               <a class="nav-link" href="/addData">Add Data</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Updata</a>
-            </li>
            </ul>
         </div>
        </div>
@@ -46,7 +43,7 @@
             <td th:text="${data.name}"></td>
             <td th:text="${data.code}"></td>
             <td th:text="${data.price}"></td>
-            <td><p class="badge bg-primary">update</p> | <p class="badge bg-danger">delete</p></td>
+            <td><a th:href="@{'/edit/'+ ${data.id} }" class="badge bg-success">update</a> | <a th:href="@{'/delete/'+ ${data.id} }" class="badge bg-danger">delete</a></td>
           </tr>
         </tbody>
       </table>
