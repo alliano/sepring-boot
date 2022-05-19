@@ -67,8 +67,7 @@ public class MainController {
 
     @PostMapping(value="/update")
     public String update(Database database, Model model) {
-        System.out.println(database);
-
+        databaseService.Update(database);
         return "redirect:/";
     }
     

@@ -3,7 +3,6 @@ package com.sprig.mvc.firstapp.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import com.sprig.mvc.firstapp.entity.Database;
 import com.sprig.mvc.firstapp.utils.RandomRaise;
 
@@ -44,6 +43,11 @@ public class DatabaseServices {
 
     public Optional<Database> findById(long id) {
         return datas.stream().filter(arg -> arg.getId() == id).findFirst();
+    }
+
+    public void Update(Database database){
+        deleteById(database.getId());
+        save(database);
     }
     
 }
