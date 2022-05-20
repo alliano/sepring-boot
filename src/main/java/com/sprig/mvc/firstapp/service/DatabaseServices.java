@@ -1,37 +1,33 @@
 package com.sprig.mvc.firstapp.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import com.sprig.mvc.firstapp.entity.Database;
-import com.sprig.mvc.firstapp.utils.RandomRaise;
 
+import com.sprig.mvc.firstapp.entity.Database;
+import com.sprig.mvc.firstapp.repository.DatabaseRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DatabaseServices {
 
-    private static List<Database> datas = new ArrayList<Database>(){
-        {
-           add(new Database(RandomRaise.getRandom(1000, 9999), "001", "dildo", 20.000));
-           add(new Database(RandomRaise.getRandom(1000, 9999), "002", "keybord", 30.000));
-           add(new Database(RandomRaise.getRandom(1000, 9999), "003", "monitor", 40.000));
-           add(new Database(RandomRaise.getRandom(1000, 9999), "004", "cpu", 50.000));
-        }
-    };
-    
-    public List<Database> findAll(){
-        return datas;
+    @Autowired
+    private DatabaseRepository repository;
+
+    public Iterable<Database> findAll(){
+        System.out.println(repository.findAll());
+        return repository.findAll();
     }
     public void save(Database database){
-        database.setId(RandomRaise.getRandom(1000, 9999));
-        datas.add(database);
+       repository.save(database);
     }
 
     public void deleteById(long id){
-        // sintax lambda atau anonymous function
-        datas.removeIf(arg -> arg.getId() == id);
+        repository.deleteById(id);
 
+        // sintax lambda atau anonymous function
+        // datas.removeIf(arg -> arg.getId() == id);
         // sintax biasa
         // for (int i = 0; i < datas.size(); i++) {
         //     if(datas.get(i).getId() == id){
@@ -42,12 +38,16 @@ public class DatabaseServices {
     }
 
     public Optional<Database> findById(long id) {
-        return datas.stream().filter(arg -> arg.getId() == id).findFirst();
+        return repository.findById(id);
+        // return datas.stream().filter(arg -> arg.getId() == id).findFirst();
     }
 
     public void Update(Database database){
-        deleteById(database.getId());
-        save(database);
+        repository.save(database);
     }
+
+   public List<Database> findByName(String keyword) {
+       return repository.findByNameContains(keyword);
+   }
     
 }
