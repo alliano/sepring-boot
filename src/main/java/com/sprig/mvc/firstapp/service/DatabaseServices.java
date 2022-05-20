@@ -46,9 +46,8 @@ public class DatabaseServices {
         repository.save(database);
     }
 
-    public List<Database> findBname(String key){
-        System.out.println(key);
-        return repository.findByNameContains(key);
-    }
+   public List<Database> findByName(String keyword) {
+       return repository.findByNameContains(keyword);
+   }
     
 }
